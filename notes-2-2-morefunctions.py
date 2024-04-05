@@ -15,7 +15,7 @@ print("The quick brown dog fox jumps over the lazy dog."*2)
 def star(num):
     value=""
     #returns given number of *
-    if num==0
+    if num== 0:
         value=="nothing"
     elif num>=1:
         value="*"*num
