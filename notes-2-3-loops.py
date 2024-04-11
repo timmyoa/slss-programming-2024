@@ -37,3 +37,23 @@ def py(num):
 asd=input("num?")
 asd=int(asd)
 py(asd)
+
+
+#this loop repeats indefinitely
+# while True:
+    # print("this is infinite")
+
+#control+c stops all
+
+
+#while loops are useful for input validation
+#ask if like icecream
+#if don't answer yes or no repeat question
+
+
+ans=input("you like icecream?: ")
+while ans not in ["yes","no",]:
+
+    ans=input("you like icecream?: ")
+
+print("O             K")
