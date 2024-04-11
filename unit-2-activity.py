@@ -1,5 +1,6 @@
-#bounus food
+#Bounus large coke
 #Author: Tim Zou
+#Date: April-11-2024
 
 def calculate_for_3(num:int):
     real=int(num/3)
@@ -9,8 +10,6 @@ def calculate_for_2(num:int):
     real=int(num/3)
     print(f"Calculations:  {num}/3={real}")
     return real
-
-
 print("Hello! Here at MC, every 3 boxes of fries, or 2 boxes of nuggets, or 2 small apple pie gives you a free large coke! ")
 asd=input("Would you like to buy any?(yes/no): ").lower().strip("!")
 while asd not in [ "yes", "no"]:
