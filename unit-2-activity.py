@@ -9,7 +9,7 @@ def calculate_for_3(num:int):
     return real
 def calculate_for_2(num:int):
     real=int(num/2)
-    print(f"Calculations:  {um}/2={real}")
+    print(f"Calculations:  {num}/2={real}")
     return real
 print("Hello! Here at MC, every 3 boxes of fries, or 2 boxes of chicken wings, or 2 small apple pie gives you a free large coke! ")
 asd=input("Would you like to buy any?(yes/no): ").lower().strip("!")
