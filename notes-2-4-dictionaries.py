@@ -37,5 +37,5 @@ person_one={
 #prints out everything
 for info in person:
     print(info)
-for info in person_dict:
-    print(info)
+for key,value in person_dict.items():
+    print(key,value)
