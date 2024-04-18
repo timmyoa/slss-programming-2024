@@ -45,7 +45,7 @@ class pikachu(Pokemon):
             -defenders:defending pokemon
             returns:
             -str representing result of attack"""
-        response=f"{self.name} used thundershock on {denfender.name}"
+        response=f"{self.name} used thundershock on {defender.name}"
         if defender.type.lower()in ["water","flying"]:
             response=response +"It was super effective"
 #create two new pokemon using our class
