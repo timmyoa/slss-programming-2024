@@ -30,6 +30,24 @@ class Pokemon: #use capital letter for class name(conventional)
         else:
             return f"smacks the {food} away"
 
+class pikachu(Pokemon):
+    def __init__(self,name="pickachu"):
+        #call constructor of parent class
+        super().__int__()
+        #assign the defult value to properties
+        self.name=name
+        self.id=25
+        self.type="Electic"
+        self.cry="pikachu"
+    def thunderbolt(self, defender: Pokemon):
+        """attack another pokemon
+            params:
+            -defenders:defending pokemon
+            returns:
+            -str representing result of attack"""
+        response=f"{self.name} used thundershock on {denfender.name}"
+        if defender.type.lower()in ["water","flying"]:
+            response=response +"It was super effective"
 #create two new pokemon using our class
 # make one pokemon that is pikachu
 # make one pokemon of choice
@@ -46,3 +64,11 @@ pokemon_one.type="eletric"
 pokemon_one.actual_cry="11451514!!!!!!!!!!!!!"
 print(pokemon_one.actual_cry())
 print(pokemon_one.eat("berry"))
+
+pikachu_one=pikachu()
+pikachu_two=pikachu("speedy")
+
+print(pikachu_one)
+print(pikachu_two)
+
+print(pikachu.thunderbolt(pokemon_one))
