@@ -130,3 +130,20 @@ print(pikachu_two.eat("potion"))
 
 print(pikachu_one.thundershock(pokemon_one))
 print(pikachu_two.thundershock(pokemon_two))
+
+
+class Origin_Forme_Diagla(Pokemon):
+    def __init__(self, name="Origin Forme Diagla"):
+        super().__init__()
+        self.name=name
+        self.id= 483
+        self.type="Dragon, Steel"
+        self.actual_cry="YIVEAAA!"
+
+    def Star_chrono(self, defender: Pokemon) -> str:
+        response=f"{self.name} used star chrono on {defender.name}, {defender.name} has fainted!"
+        return response
+
+dialga = Origin_Forme_Diagla()
+  #use object, the object of class  
+print(dialga.Star_chrono(pokemon_two))
