@@ -1,74 +1,132 @@
-# classes and objects 
+# Classes and Objects
 
-#big ideas :
-# -classes allow us to couple data and functions together
-# -object are the actual representives of the classes in our python scripits
+# Big Ideas:
+#   - Classes allow us to couple data and functions together
+#   - Objects are the ACTUAL representation of the classes
 
-#create a pokemon class; this repersnet a pokenon
 
-class Pokemon: #use capital letter for class name(conventional)
-    def __init__(self): 
-        """ special method/ function called constuctor. contains all the properties/variable that describe a pokemon"""
+# Create a Pokemon class; this represents a Pokemon
+class Pokemon:  # use a capital letter for class name
+    def __init__(self):
+        """A special method (function) called the
+        Constructor. Contains all the properties/variables
+        that describe a Pokemon."""
         self.name = ""
-        self.id= 0
-        self.weight=0
-        self.height=0
-        self.type="normal"
-        self.actual_cry="114514!!" #the defulte value
+        self.id = 0
+        self.weight = 0
+        self.height = 0
+        self.type = "normal"
+        self.actual_cry = "Roooooooooooooar!"
 
-        print("a new pokemon is created")
-    def cry(self):
-        """this is the sound: pikapi
-        returns the string of the sound"""
-        return self.actual_cry
-    def eat(self,food:str):
-        "where to feed the pokemon, what it eats"
-        if food.lower()=="berry":
-            return f"{self.name} ate the berry"
-        if food.lower()=="potion":
-            return " it healed!"
+        print("A new Pokémon is born!")
+
+    def cry(self) -> str:
+        """Represents the sound a Pokemon makes
+
+        Returns:
+            - string representing the sound it makes"""
+        return f'{self.name} says, "{self.actual_cry}"!'
+
+    def eat(self, food: str) -> str:
+        """Represents feeding the Pokemon
+
+        Params:
+            - food: what food you feed it
+
+        Return:
+            - what it says after eating it"""
+        if food.lower() == "berry":
+            return f'{self.name} ate the berry and says, "YUM!"'
+        elif food.lower() == "potion":
+            return f"{self.name} consumed the potion and feels healthier!"
         else:
-            return f"smacks the {food} away"
+            return f"{self.name} batted the {food} away."
 
-class pikachu(Pokemon):
-    def __init__(self,name="pickachu"):
-        #call constructor of parent class
-        super().__int__()
-        #assign the defult value to properties
-        self.name=name
-        self.id=25
-        self.type="Electic"
-        self.cry="pikachu"
-    def thunderbolt(self, defender: Pokemon):
-        """attack another pokemon
-            params:
-            -defenders:defending pokemon
-            returns:
-            -str representing result of attack"""
-        response=f"{self.name} used thundershock on {defender.name}"
-        if defender.type.lower()in ["water","flying"]:
-            response=response +"It was super effective"
-#create two new pokemon using our class
-# make one pokemon that is pikachu
-# make one pokemon of choice
+
+# Create a new child class of Pokemon
+class Pikachu(Pokemon):
+    def __init__(self, name="Pikachu"):
+        # Call constructor of parent class
+        super().__init__()
+
+        # Assign the default values to properties
+        self.name = name
+        self.id = 25
+        self.type = "Electric"
+        self.actual_cry = "Pikachu"
+
+    def thundershock(self, defender: Pokemon) -> str:
+        """Simulate a thundershock attack against
+        another Pokemon.
+
+        Params:
+            - defender: defending Pokemon
+
+        Returns:
+            str representing result of attack.
+        """
+        response = f"{self.name} used thundershock on {defender.name}!"
+
+        if defender.type.lower() in ["water", "flying"]:
+            response = response + " It was super effective."
+
+        return response
+
+
+# Create two Pokemon using our class
+# Make one Pokemon that is Pikachu
 pokemon_one = Pokemon()
 
-#chaning properties
-print(pokemon_one.name)#gives nothing
-pokemon_one.name="pikachu"
-print(pokemon_one.name)
-pokemon_one.id="123213123"
-pokemon_one.type="eletric"
+# Change some properties in pokemon_one
+#   Change its name
+print(pokemon_one.name)  # ""
+pokemon_one.name = "Pikachu"
+print(pokemon_one.name)  # "Pikachu"
 
-#using cry method
-pokemon_one.actual_cry="11451514!!!!!!!!!!!!!"
-print(pokemon_one.actual_cry())
+pokemon_one.id = 25
+pokemon_one.type = "Electric"
+
+print(pokemon_one.id)
+print(pokemon_one.type)
+
+
+# Make one Pokemon of your choice
+# Store it in a variable called
+#    pokemon_two
+#    - you can make Squirtle
+#       - id -> 4
+#       - type -> "Water"
+pokemon_two = Pokemon()
+
+pokemon_two.name = "Squirtle"
+pokemon_two.id = 4
+pokemon_two.type = "water"
+
+print(pokemon_two.name)
+print(pokemon_two.id)
+print(pokemon_two.type)
+
+pokemon_one.actual_cry = "Pikachu"
+pokemon_two.actual_cry = "GRRraaggrrggg"
+
+print(pokemon_one.cry())
+print(pokemon_two.cry())
+
+# Test the eat method
 print(pokemon_one.eat("berry"))
+print(pokemon_one.eat("potion"))
+print(pokemon_one.eat("poison"))  # mr. ubial does not condone
+print(pokemon_two.eat("berry"))
+print(pokemon_two.eat("potion"))
+print(pokemon_two.eat("poison"))  # mr. ubial does not condone
 
-pikachu_one=pikachu()
-pikachu_two=pikachu("speedy")
+pikachu_one = Pikachu()
+pikachu_two = Pikachu("Speedy")
 
-print(pikachu_one)
-print(pikachu_two)
+print(pikachu_one.name)  # "Pikachu"
+print(pikachu_two.name)  # "Speedy"
+print(pikachu_one.cry())
+print(pikachu_two.eat("potion"))
 
-print(pikachu.thunderbolt(pokemon_one))
+print(pikachu_one.thundershock(pokemon_one))
+print(pikachu_two.thundershock(pokemon_two))
