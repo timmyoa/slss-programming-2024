@@ -144,6 +144,6 @@ class Origin_Forme_Diagla(Pokemon):
         response=f"{self.name} used star chrono on {defender.name}, {defender.name} has fainted!"
         return response
 
-dialga = Origin_Forme_Diagla()
-  #use object, the object of class  
+dialga = Origin_Forme_Diagla() 
+#use object, the object of class  
 print(dialga.Star_chrono(pokemon_two))
