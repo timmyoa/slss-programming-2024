@@ -93,7 +93,7 @@ def start():
 
         # --- Update the world state
         #update the location of the dvdlogo
-        #    dvdlogo.rect.x +dedlogo.vel_x
+        #    dvdlogo.rect.x +dedlogo.vel_ś
         #    dvdlogo.rect.y+dvdlogo.vel_y
         all_sprites.update()
 
