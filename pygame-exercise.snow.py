@@ -14,9 +14,9 @@ WIDTH = 1280  # Pixels
 HEIGHT = 720
 SCREEN_SIZE = (WIDTH, HEIGHT)
 
-class snowflake(pg.sprite.Sprite):
-    def __int__(self,size:int):
-        super().__int__()
+class Snowflake(pg.sprite.Sprite):
+    def __init__(self, size: int):
+        super().__init__()
         self.image = pg.Surface((size,size)) #creating a blank image
 
         #draw a circle on the "blank image"
@@ -27,13 +27,14 @@ class snowflake(pg.sprite.Sprite):
             size//2)
         self.rect=self.image.get_rect()
         #spawn in center of screen
-        self.rect.centerx = WIDTH//2
-        self.rect.centery = HEIGHT //2
-    # def update(self):
-    #     self.rect.y+=self.vel_y
-    #     #bounce if reach bottom
-    #     if self.rect.top>1280:
-    #         self.rect+=1380
+        self.rect.centerx = random.randrange(10,1279)
+        self.rect.centery = random.randrange(0,720)
+        self.vel_y= (random.randrange(5,10))
+    def update(self):
+        self.rect.y+=self.vel_y
+        #bounce if reach bottom
+        if self.rect.top>720:
+            self.rect.centery-=730
 
 def start():
     """Environment Setup and Game Loop"""
@@ -44,12 +45,14 @@ def start():
     screen = pg.display.set_mode(SCREEN_SIZE)
     done = False
     clock = pg.time.Clock()
-
+    pg.display.set_caption("<snowfalls>")
     # All sprites go in this sprite Group
     all_sprites = pg.sprite.Group()
     #add one flake to sprite
-    all_sprites.add(snowflake(6))
-    pg.display.set_caption("<snowfalls>")
+    for i in range(random.randrange(200,300)):
+        all_sprites.add(Snowflake(random.randrange(5,20)))
+
+    
 
     # --Main Loop--
     while not done:
@@ -59,7 +62,7 @@ def start():
                 done = True
 
         # --- Update the world state
-
+        all_sprites.update()
         # --- Draw items
         # all_sprites.update()
         screen.fill(BLACK) #draw the background
