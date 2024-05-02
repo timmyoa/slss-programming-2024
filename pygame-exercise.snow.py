@@ -1,3 +1,6 @@
+#name: Tim Zou
+#block: D
+#date: may/2/2024
 import pygame as pg
 import random
 # --CONSTANTS--
