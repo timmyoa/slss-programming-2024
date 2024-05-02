@@ -15,7 +15,7 @@ HEIGHT = 720
 SCREEN_SIZE = (WIDTH, HEIGHT)
 
 class Snowflake(pg.sprite.Sprite):
-    def __init__(self, size: int):
+    def __init__(self, size: int,speed:int):
         super().__init__()
         self.image = pg.Surface((size,size)) #creating a blank image
 
@@ -29,7 +29,7 @@ class Snowflake(pg.sprite.Sprite):
         #spawn in center of screen
         self.rect.centerx = random.randrange(10,1279)
         self.rect.centery = random.randrange(0,720)
-        self.vel_y= (random.randrange(5,10))
+        self.vel_y= speed
     def update(self):
         self.rect.y+=self.vel_y
         #bounce if reach bottom
@@ -49,8 +49,12 @@ def start():
     # All sprites go in this sprite Group
     all_sprites = pg.sprite.Group()
     #add one flake to sprite
-    for i in range(random.randrange(200,300)):
-        all_sprites.add(Snowflake(random.randrange(5,20)))
+    for i in range(random.randrange(50,100)):
+        all_sprites.add(Snowflake(9,10))
+    for i in range(random.randrange(50,100)):
+        all_sprites.add(Snowflake(14,7))
+    for i in range(random.randrange(50,100)):
+        all_sprites.add(Snowflake(22,5))
 
     
 
