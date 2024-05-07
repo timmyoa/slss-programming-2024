@@ -17,12 +17,20 @@ GRAY = (128, 128, 128)
 WIDTH = 1280  # Pixels
 HEIGHT = 720
 SCREEN_SIZE = (WIDTH, HEIGHT)
+#load image than scale it
+LAWS_IMAGE= pg.image.load("./Images/lawsuite.jpeg")
+LAWS_IMAGE=pg.transform.scale(#the method
+    LAWS_IMAGE,
+    (LAWS_IMAGE.get_width()//1.1, LAWS_IMAGE.get_height()//1.1)
+)
+
 class Lawsuite(pg.sprite.Sprite):
     #represent dvd logo sprite
     def __init__(self):
         super().__init__()
+        #scale the image to a set size
 
-        self.image = pg.image.load("./Images/lawsuite.jpeg")
+        self.image = LAWS_IMAGE
 
         self.rect= self.image.get_rect()
         # new properity: velocity of the dvd logo
@@ -67,7 +75,7 @@ class Coins(pg.sprite.Sprite):
 
 def start():
     """Environment Setup and Game Loop"""
-    dvdt=0
+    lawt=0
     pg.init()
     pg.mouse.set_visible(False)
     # --Game State Variables--
@@ -101,13 +109,13 @@ def start():
         # --- Update the world state
         all_sprites.update()
         coins_collided = pg.sprite.spritecollide(player, coin_sprites, True)
-        dvd_collided=pg.sprite.spritecollide(player, dvd_sprites, False)
+        law_collided=pg.sprite.spritecollide(player, dvd_sprites, False)
         for coin in  coins_collided:
             score += 1
             print(score)
-        for dvd in dvd_collided:
-            dvdt+=1
-            print(f"Collison: {dvdt}")
+        for law in law_collided:
+            lawt+=1
+            print(f"Collison: {lawt}")
         if len(coin_sprites) <= 0:
             for i in range (1000):
                 coin= Coins()
@@ -121,7 +129,7 @@ def start():
         pg.display.flip()
 
         # --- Tick the Clock
-        clock.tick(60000)  # 60 fps
+        clock.tick(60)  # 60 fps
 
 
 def main():
