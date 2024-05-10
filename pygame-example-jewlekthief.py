@@ -93,7 +93,7 @@ def start():
         coin=Coins()
         all_sprites.add(coin)
         coin_sprites.add(coin)
-    for i in range(3):
+    for i in range(5):
         law=Lawsuite()
         all_sprites.add(law)
         dvd_sprites.add(law)
@@ -116,6 +116,13 @@ def start():
         for law in law_collided:
             lawt+=1
             print(f"Collison: {lawt}")
+            if lawt>=500:
+                player.kill()
+                law.kill()
+                print("GAME OVER!")
+                print(f"FINAL SCORES: {score} COINS GOTTEN!")
+                done=True
+
         if len(coin_sprites) <= 0:
             for i in range (1000):
                 coin= Coins()
