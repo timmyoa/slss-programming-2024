@@ -38,7 +38,7 @@ class Lawsuite(pg.sprite.Sprite):
         self.vel_y=random.randrange(20,50)
         self.rect.centerx = random.randrange(100,1100)
         self.rect.centery = random.randrange(100,620)
-
+        
     def update(self):
         self.rect.x+=self.vel_x
         self.rect.y+=self.vel_y
@@ -115,8 +115,8 @@ def start():
             print(score)
         for law in enemy_collided:
             lawt+=1
-            print(f"Collison: {lawt}")
-            if lawt>=500:
+            print(f"Lives: {int((540-lawt)/60)}")
+            if lawt>=540:
                 player.kill()
                 law.kill()
                 print("GAME OVER!")
