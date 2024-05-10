@@ -109,11 +109,11 @@ def start():
         # --- Update the world state
         all_sprites.update()
         coins_collided = pg.sprite.spritecollide(player, coin_sprites, True)
-        law_collided=pg.sprite.spritecollide(player, dvd_sprites, False)
+        enemy_collided=pg.sprite.spritecollide(player, dvd_sprites, False)
         for coin in  coins_collided:
             score += 1
             print(score)
-        for law in law_collided:
+        for law in enemy_collided:
             lawt+=1
             print(f"Collison: {lawt}")
             if lawt>=500:
