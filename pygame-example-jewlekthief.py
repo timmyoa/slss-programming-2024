@@ -60,6 +60,7 @@ class Player(pg.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.rect.centerx=WIDTH//2
         self.rect.centery=HEIGHT//2
+        self.livesr=9
     def update(self):
         self.rect.centerx=pg.mouse.get_pos()[0]
         self.rect.centery=pg.mouse.get_pos()[1]
@@ -75,7 +76,6 @@ class Coins(pg.sprite.Sprite):
 
 def start():
     """Environment Setup and Game Loop"""
-    lawt=0
     pg.init()
     pg.mouse.set_visible(False)
     # --Game State Variables--
@@ -83,6 +83,7 @@ def start():
     done = False
     clock = pg.time.Clock()
     score=0
+    font=pg.font.SysFont("Papyrus",24)
     # All sprites go in this sprite Group
     all_sprites = pg.sprite.Group()
     coin_sprites = pg.sprite.Group()
@@ -112,11 +113,9 @@ def start():
         enemy_collided=pg.sprite.spritecollide(player, dvd_sprites, False)
         for coin in  coins_collided:
             score += 1
-            print(score)
         for law in enemy_collided:
-            lawt+=1
-            print(f"Lives: {int((540-lawt)/60)}")
-            if lawt>=540:
+            player.livesr-= 1/60
+            if int(player.livesr)==0:
                 player.kill()
                 law.kill()
                 print("GAME OVER!")
@@ -132,6 +131,10 @@ def start():
         # --- Draw items
         screen.fill(BLACK)
         all_sprites.draw(screen)
+        score_image=font.render(f"Score: {score}", True, GREEN)
+        lives_image=font.render(f"Lives Remaining: {int(player.livesr)}",True,GREEN)
+        screen.blit(score_image, (5,5))
+        screen.blit(lives_image,(5,45))
         # Update the screen with anything new
         pg.display.flip()
 
