@@ -9,6 +9,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 SKY_BLUE = (95, 165, 228)
+GREEN = (0, 255, 0)
 WIDTH = 720
 HEIGHT = 1000
 TITLE = "shootemup"
@@ -34,11 +35,28 @@ class Laser(pg.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.rect.centerx=plaloc[0]
         self.rect.bottom=plaloc[1]
+        self.vel_x=-10
+    def update(self):
+        self.rect.centery+=self.vel_x
+        if self.rect.centery<-20:
+            self.kill()
+
+class Mario(pg.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image=pg.image.load("./Images/Mario.png")
+        self.rect=self.image.get_rect()
+        self.rect.centerx=WIDTH//2
+        self.rect.centery=100
+        self.y=20
+    def update(self):
+        self.rect.centerx+=self.y
+        if self.rect.centerx>710:
+            self.y=random.randrange(-15,-7)
+        if self.rect.centerx<10:
+            self.y=random.randrange(7,15)
 
 
-
-class Mario:
-    pass
 
 def main():
     pg.init()
@@ -56,6 +74,14 @@ def main():
     all_sprites=pg.sprite.Group()
     player=Player()
     all_sprites.add(player)
+    mario=Mario()
+    all_sprites.add(mario)
+    tests=pg.sprite.Group()
+
+    score=0
+    font=pg.font.SysFont("Papyrus",24)
+
+
 
     # ----- MAIN LOOP
     while not done:
@@ -63,17 +89,25 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
+                print(f"FINAL SCORE:{score}")
             if event.type == pg.MOUSEBUTTONDOWN:
-                all_sprites.add(Laser((player.rect.centerx, player.rect.top)))
+                tests.add(Laser((player.rect.centerx, player.rect.top)))
+
 
         # ----- LOGIC
         all_sprites.update()
+
         # ----- RENDER
         screen.fill(BLACK)
-
+        tests.update()
+        tests.draw(screen)
         # Draw all the sprite groups
         all_sprites.draw(screen)
-
+        score_image=font.render(f"Score: {score}", True, GREEN)
+        l_collided=pg.sprite.spritecollide(mario, tests, True)
+        for i in l_collided:
+            score+=1
+        screen.blit(score_image, (5,5))
         # ----- UPDATE DISPLAY
         pg.display.flip()
         clock.tick(60)
