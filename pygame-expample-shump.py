@@ -35,7 +35,7 @@ class Laser(pg.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.rect.centerx=plaloc[0]
         self.rect.bottom=plaloc[1]
-        self.vel_x=-10
+        self.vel_x=-100
     def update(self):
         self.rect.centery+=self.vel_x
         if self.rect.centery<-20:
@@ -76,7 +76,7 @@ def main():
     all_sprites.add(player)
     mario=Mario()
     all_sprites.add(mario)
-    tests=pg.sprite.Group()
+    tests=pg.sprite.Group() #lazer
 
     score=0
     font=pg.font.SysFont("Papyrus",24)
